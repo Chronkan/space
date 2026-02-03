@@ -7,7 +7,7 @@ variable "cidr_block_vpc" {
 }
 
 variable "dns_true" {
-  type = string
+  type = bool
 }
 
 variable "vpc_public_subnet" {

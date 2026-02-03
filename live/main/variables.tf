@@ -28,7 +28,7 @@ variable "name" {
 }
 
 variable "dns_true" {
-  type = string
+  type = bool
 }
 
 variable "alb_public_subnet_one" {

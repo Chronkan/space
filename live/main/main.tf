@@ -21,8 +21,9 @@ module "web" {
   name                   = "main"
   region                 = module.vpc.region
   vpc_id                 = module.vpc.id
-  subnet_ids             = module.vpc.public_subnet_id
+  subnet_id              = module.vpc.public_subnet_id
   instance_type          = var.instance_type
+  ami_id                 = var.ami_id
   allow_ssh              = var.allow_ssh
   rds_private_subnet_one = var.rds_private_subnet_one
   rds_private_subnet_two = var.rds_private_subnet_two

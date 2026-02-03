@@ -63,14 +63,14 @@ resource "aws_vpc_security_group_ingress_rule" "ssh" {
     from_port = 22
     to_port = 22
     ip_protocol = "tcp"
-    cidr_ipv4 = "0.0.0.0/0"
+    cidr_ipv4 = var.ingress_ssh_cidr
   
 }
 
 resource "aws_instance" "web" {
     ami = var.ami_id != "" ? var.ami_id : data.aws_ami.al_latest[0].id 
     instance_type = var.instance_type
-    subnet_id = var.subnet_ids
+    subnet_id = var.subnet_id
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.web_sg.id]
 
