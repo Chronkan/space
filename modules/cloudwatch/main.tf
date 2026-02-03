@@ -2,40 +2,9 @@ resource "aws_cloudwatch_dashboard" "test-dashboard" {
   count          = var.instance_id != "" ? 1 : 0
   dashboard_name = "test-dashboard"
 
-  dashboard_body = jsonencode({
-    widgets = [
-      {
-        type   = "metric"
-        x      = 0
-        y      = 0
-        width  = 12
-        height = 6
-
-        properties = {
-          metrics = [
-            ["AWS/EC2", "CPUUtilization", "InstanceId", var.instance_id],
-            ["AWS/EC2", "NetworkIn", "InstanceId", var.instance_id],
-            ["AWS/EC2", "NetworkOut", "InstanceId", var.instance_id]
-          ]
-          period = 300
-          stat   = "Average"
-          region = var.region
-          title  = "EC2 Instance Metrics"
-        }
-      },
-
-      {
-        type   = "text"
-        x      = 0
-        y      = 7
-        width  = 3
-        height = 3
-
-        properties = {
-          markdown = "Testing"
-        }
-      }
-    ]
+  dashboard_body = templatefile("${path.module}/dashboard.json.tpl", {
+    instance_id = var.instance_id
+    region      = var.region
   })
 }
 
