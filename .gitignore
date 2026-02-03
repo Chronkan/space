@@ -1,0 +1,24 @@
+# Terraform local state
+*.tfstate
+*.tfstate.*
+
+# Terraform lock files
+.terraform.lock.hcl
+
+# Terraform directory with providers
+.terraform/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Local files
+*.bak
+*.backup
+*.zip
